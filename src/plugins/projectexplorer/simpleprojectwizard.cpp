@@ -110,9 +110,9 @@ FilesSelectionWizardPage::FilesSelectionWizardPage(SimpleProjectWizardDialog *si
         connect(comboBox, &QComboBox::currentTextChanged, this, [this](const QString &bs){
             m_buildSystem = bs;
         });
-        comboBox->addItems(QStringList() << "qmake" << "cmake");
+        comboBox->addItems(QStringList() << "cmake");
         comboBox->setEditable(false);
-        comboBox->setCurrentText("qmake");
+        comboBox->setCurrentText("cmake");
         hlayout->addWidget(comboBox);
         layout->addLayout(hlayout);
     }

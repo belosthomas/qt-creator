@@ -75,7 +75,7 @@ TerminalAspect::TerminalAspect()
 */
 void TerminalAspect::addToLayout(LayoutBuilder &builder)
 {
-    QTC_CHECK(!m_checkBox);
+    /*QTC_CHECK(!m_checkBox);
     m_checkBox = new QCheckBox(tr("Run in terminal"));
     m_checkBox->setChecked(m_useTerminal);
     builder.addItems({{}, m_checkBox.data()});
@@ -83,7 +83,7 @@ void TerminalAspect::addToLayout(LayoutBuilder &builder)
         m_userSet = true;
         m_useTerminal = m_checkBox->isChecked();
         emit changed();
-    });
+    });*/
 }
 
 /*!

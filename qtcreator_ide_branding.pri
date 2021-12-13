@@ -8,7 +8,6 @@ IDE_ID = qtcreator
 IDE_CASED_ID = QtCreator
 
 PRODUCT_BUNDLE_ORGANIZATION = org.qt-project
-PROJECT_USER_FILE_EXTENSION = .user
 
 IDE_DOC_FILES_ONLINE = $$PWD/doc/qtcreator/qtcreator-online.qdocconf \
                        $$PWD/doc/qtcreatordev/qtcreator-dev-online.qdocconf

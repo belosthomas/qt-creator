@@ -62,7 +62,7 @@ private:
     void calculateUseTerminal();
 
     bool m_useTerminalHint = false;
-    bool m_useTerminal = false;
+    bool m_useTerminal = true;
     bool m_userSet = false;
     QPointer<QCheckBox> m_checkBox; // Owned by RunConfigWidget
 };

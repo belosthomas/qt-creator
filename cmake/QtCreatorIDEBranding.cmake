@@ -9,7 +9,6 @@ set(IDE_ID "qtcreator")                               # The IDE id (no spaces, l
 set(IDE_CASED_ID "QtCreator")                         # The cased IDE id (no spaces!)
 set(IDE_BUNDLE_IDENTIFIER "org.qt-project.${IDE_ID}") # The macOS application bundle identifier.
 
-set(PROJECT_USER_FILE_EXTENSION .user)
 set(IDE_DOC_FILE "qtcreator/qtcreator.qdocconf")
 set(IDE_DOC_FILE_ONLINE "qtcreator/qtcreator-online.qdocconf")
 

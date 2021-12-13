@@ -40,7 +40,6 @@
 #include "session.h"
 #include "target.h"
 #include "taskhub.h"
-#include "userfileaccessor.h"
 
 #include <coreplugin/idocument.h>
 #include <coreplugin/documentmanager.h>
@@ -62,6 +61,7 @@
 #include <utils/stringutils.h>
 
 #include <QFileDialog>
+#include <QMessageBox>
 
 #include <limits>
 
@@ -195,7 +195,6 @@ public:
     EditorConfiguration m_editorConfiguration;
     Context m_projectLanguages;
     QVariantMap m_pluginSettings;
-    std::unique_ptr<Internal::UserFileAccessor> m_accessor;
 
     QString m_displayName;
 
@@ -616,22 +615,30 @@ void Project::handleSubTreeChanged(FolderNode *node)
 void Project::saveSettings()
 {
     emit aboutToSaveSettings();
-    if (!d->m_accessor)
-        d->m_accessor = std::make_unique<Internal::UserFileAccessor>(this);
-    if (!targets().isEmpty())
-        d->m_accessor->saveSettings(toMap(), ICore::dialogParent());
+    // Do nothing
 }
 
 Project::RestoreResult Project::restoreSettings(QString *errorMessage)
 {
-    if (!d->m_accessor)
-        d->m_accessor = std::make_unique<Internal::UserFileAccessor>(this);
-    QVariantMap map(d->m_accessor->restoreSettings(ICore::dialogParent()));
-    RestoreResult result = fromMap(map, errorMessage);
-    if (result == RestoreResult::Ok)
-        emit settingsLoaded();
+    Kit *k = KitManager::defaultKit();
 
-    return result;
+    QList<BuildInfo> infoList;
+
+    if (auto factory = BuildConfigurationFactory::find(k, projectFilePath())) {
+        for (int i = 0; i < 5; ++i) {
+            BuildInfo buildInfo;
+            buildInfo.displayName = tr("Build %1").arg(i + 1);
+            buildInfo.factory = factory;
+            buildInfo.kitId = k->id();
+            buildInfo.buildDirectory = projectFilePath();
+            infoList << buildInfo;
+        }
+    }
+
+    setup(infoList);
+
+    emit settingsLoaded();
+    return RestoreResult::Ok;
 }
 
 /*!

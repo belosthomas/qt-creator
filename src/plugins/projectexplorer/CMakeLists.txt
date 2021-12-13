@@ -179,15 +179,9 @@ add_qtc_plugin(ProjectExplorer
     toolchainoptionspage.cpp toolchainoptionspage.h
     toolchainsettingsaccessor.cpp toolchainsettingsaccessor.h
     treescanner.cpp treescanner.h
-    userfileaccessor.cpp userfileaccessor.h
     vcsannotatetaskhandler.cpp vcsannotatetaskhandler.h
     waitforstopdialog.cpp waitforstopdialog.h
     xcodebuildparser.cpp xcodebuildparser.h
-)
-
-extend_qtc_plugin(ProjectExplorer
-  CONDITION PROJECT_USER_FILE_EXTENSION
-  DEFINES "PROJECT_USER_FILE_EXTENSION=${PROJECT_USER_FILE_EXTENSION}"
 )
 
 if (TARGET libclang)
